@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\PacienteController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('cadastropacientes', function(){
-    return view('/users/a');
-});
+Route::get('/pacientes', [PacienteController::class, 'index']);
 
-Route::get('visualizarpacientes', function(){
-    return view('/users/b');
-});
+Route::get('/cadastropacientes', [PacienteController::class, 'registerPatients']);
+Route::post('/save-paciente', [PacienteController::class, 'save']);
+
+

@@ -30,6 +30,13 @@ class StoreRequest extends FormRequest
             'nascimento' => 'required',
             'cpf' => 'required',
             'cns' => 'required',
+            'cep' => 'required',
+            'endereco' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
         ];
     }
 
@@ -42,6 +49,13 @@ class StoreRequest extends FormRequest
             'nascimento.required' => 'O campo nascimento é obrigatório.',
             'cpf.required' => 'O campo cpf é obrigatório.',
             'cns.required' => 'O campo cns é obrigatório.',
+            'cep.required' => 'O campo cep é obrigatório.',
+            'endereco.required' => 'O campo endereço é obrigatório.',
+            'numero.required' => 'O campo numero é obrigatório.',
+            'complemento.required' => 'O campo complemento é obrigatório.',
+            'bairro.required' => 'O campo bairro é obrigatório.',
+            'cidade.required' => 'O campo cidade é obrigatório.',
+            'estado.required' => 'O campo estado é obrigatório.',
         ];
     }
 }

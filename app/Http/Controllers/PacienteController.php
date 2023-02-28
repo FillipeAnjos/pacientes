@@ -9,6 +9,7 @@ use App\Services\Validacao;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 use App\Models\PacienteModel;
+use App\Models\ResidenciaModel;
 use App\Http\Controllers\ResidenciaController;
 use App\WebService\ViaCep;
 use Illuminate\Support\Facades\DB;
@@ -46,18 +47,42 @@ class PacienteController extends Controller
     }
 
     public function edit($id){
+
+        $paciente = PacienteModel::find($id);
+        $residencia = DB::table('residencia')->where([['paciente_id','=',$id]])->first();
+        
+        return view('pacientes/editar',  compact('paciente', 'residencia'));
+
     }
 
-    public function update(Request $request){
+    public function update(StoreRequest $request){
+
+        $imagem = $this->fetchImage($request->foto);
+        if($imagem == false){
+            return view('pacientes/cadastro');
+        }
+        $this->moveImage($request->foto, $imagem->path);
+
+        $residenciaController = new ResidenciaController();
+        $residenciaController->update($request);
+
+        $produto = PacienteModel::findOrFail($request->id);
+        $produto->update([
+            'foto' => $imagem->nome,
+            'nome' => $request->nome,
+            'nomemae' => $request->nomemae,
+            'nascimento' => $request->nascimento,
+            'cpf' => $request->cpf,
+            'cns' => $request->cns,
+        ]);
+
+        $pacientes = DB::table('pacientes')->simplePaginate(5); 
+
+        return view('welcome', compact('pacientes'));
+
     }
 
     public function registerPatients(){
-        
-        //$categorias = CategoryModel::all();
-        //$fornecedores = ProviderModel::all();
-        //$marcas = brandModel::all();
-
-        //compact('categorias', 'fornecedores', 'marcas')
 
         return view('pacientes/cadastro');
 
@@ -72,20 +97,14 @@ class PacienteController extends Controller
             return view('pacientes/cadastro');
         }
 
-        $fetchImage = $imagem = $this->fetchImage($foto);
-        if($fetchImage == false){
+        $imagem = $this->fetchImage($foto);
+        if($imagem == false){
             return view('pacientes/cadastro');
         }
 
-        // Validar aqui os campos CEP da Residenciaaaaaaaaaaaaaaa
-
-
-
-
-
         
 
-        $insertPaciente = $this->savePatient($imagem, $request);
+        $insertPaciente = $this->savePatient($imagem->nome, $request);
         if(!$insertPaciente){
             Session::flash('cadastropaciente-error', 'Ocorreu um erro ao cadastrar o paciente!');
             return view('pacientes/cadastro');
@@ -94,7 +113,7 @@ class PacienteController extends Controller
         $residenciaController = new ResidenciaController();
         $residenciaController->save($request, $insertPaciente->id);
 
-        $moverImagem = $this->moveImage($foto, $imagem);
+        $moverImagem = $this->moveImage($foto, $imagem->path);
 
 
 
@@ -121,7 +140,9 @@ class PacienteController extends Controller
 
         $randomico = rand(1000, 9999);
 
-        $imagem = public_path().'\imgpacientes\foto\imagem_'.$nomeImagem.'.'.$randomico.'.'.$extensaoImagem;
+        $imagem = new \stdClass();
+        $imagem->path = public_path().'\imgpacientes\foto\imagem_'.$nomeImagem.'.'.$randomico.'.'.$extensaoImagem;
+        $imagem->nome = 'imagem_'.$nomeImagem.'.'.$randomico.'.'.$extensaoImagem;
 
         return $imagem;
 

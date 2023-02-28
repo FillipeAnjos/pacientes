@@ -22,5 +22,7 @@ Route::get('/pacientes', [PacienteController::class, 'index']);
 Route::get('/cadastropacientes', [PacienteController::class, 'registerPatients']);
 Route::post('/save-paciente', [PacienteController::class, 'save']);
 Route::get('/delete-paciente/{id}', [PacienteController::class, 'destroy']);
+Route::get('/edit-paciente/{id}', [PacienteController::class, 'edit']);
+Route::post('/update-paciente', [PacienteController::class, 'update']);
 
 

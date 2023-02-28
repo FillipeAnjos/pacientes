@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Session;
 use File;
-use App\Services\Validacao;
 
+use App\Services\Validacao;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 use App\Models\PacienteModel;
 use App\Http\Controllers\ResidenciaController;
+use App\WebService\ViaCep;
 
 class PacienteController extends Controller
 {
@@ -66,13 +67,13 @@ class PacienteController extends Controller
             return view('pacientes/cadastro');
         }
 
-        // Validar aqui os campos da Residenciaaaaaaaaaaaaaaa
+        // Validar aqui os campos CEP da Residenciaaaaaaaaaaaaaaa
 
 
 
 
 
-
+        
 
         $insertPaciente = $this->savePatient($imagem, $request);
         if(!$insertPaciente){

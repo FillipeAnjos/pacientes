@@ -54,22 +54,30 @@ class PacienteController extends Controller
     public function save(StoreRequest $request){
 
         $foto = $request->foto;
-
-        //dd($request->all());
         
-        $this->validarCampos($request); 
+        $validarCampos = $this->validarCampos($request); 
+        if(!$validarCampos){
+            return view('pacientes/cadastro');
+        }
 
-        $imagem = $this->fetchImage($foto);
+        $fetchImage = $imagem = $this->fetchImage($foto);
+        if($fetchImage == false){
+            return view('pacientes/cadastro');
+        }
 
         $insertPaciente = $this->savePatient($imagem, $request);
 
         $moverImagem = $this->moveImage($foto, $imagem);
 
+        $insertPaciente = true;
+
         if($insertPaciente){
-            dd("Deu certooo Pacienteee");
+            Session::flash('cadastropaciente-success', 'Paciente cadastrado com sucesso!');
         }else{
-            dd("Deu erradooo Pacienteee");
+            Session::flash('cadastropaciente-error', 'Ocorreu um erro ao cadastrar o paciente!');
         }
+
+        return view('pacientes/cadastro');
 
     }
 
@@ -79,7 +87,8 @@ class PacienteController extends Controller
         $extensaoImagem = $foto->extension();
 
         if($extensaoImagem != 'jpg' && $extensaoImagem != 'png'){
-            dd("Erro na extensão do arquivo foto do paciente");
+            Session::flash('cadastropaciente-error', 'Favor realizar o upload da foto com extensões jpg ou png.');
+            return false;
         }
 
         $randomico = rand(1000, 9999);
@@ -119,8 +128,17 @@ class PacienteController extends Controller
         $cpf = $validacao->validaCPF($request->cpf);
         $cns = $validacao->validaCartaoNacionalSaude($request->cns);
         
-        $cpf == true ? dd("CPF deu tudo certo") : dd("CPF deu Erro não passou");
-        $cns == true ? dd("CNS deu tudo certo") : dd("CNS deu Erro não passou");
+        if($cpf != true){
+            Session::flash('cadastropaciente-error', 'CPF inválido.');
+            return false;
+        }
+
+        if($cns != true){
+            Session::flash('cadastropaciente-error', 'CNS inválido.');
+            return false;
+        }
+
+        return true;
 
     }
 

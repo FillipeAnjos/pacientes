@@ -28,6 +28,18 @@
         </div>
     @endif
 
+    @if(Session::has('cadastropaciente-success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::pull('cadastropaciente-success', 'default') }}
+        </div>
+    @endif
+
+    @if(Session::has('cadastropaciente-error'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::pull('cadastropaciente-error', 'default') }}
+        </div>
+    @endif
+
     
 
 </div>

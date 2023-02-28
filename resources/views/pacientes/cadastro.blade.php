@@ -10,6 +10,8 @@
 
     <br/>
 
+    @include('alert.cadastropaciente');
+
     <div class="container">
     <div class="row">
         <div class="col-2" >
@@ -49,12 +51,12 @@
 
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" >CPF</span>
-                                <input type="text" name="cpf" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="15"/>
+                                <input type="text" name="cpf" id="cpf" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="15"/>
                             </div>
 
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" >CNS</span>
-                                <input type="text" name="cns" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="100"/>
+                                <input type="text" name="cns" id="cns" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="20"/>
                             </div>
 
                     </div>

@@ -7,6 +7,7 @@ use File;
 use App\Services\Validacao;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 use App\Models\PacienteModel;
 
 class PacienteController extends Controller
@@ -50,21 +51,13 @@ class PacienteController extends Controller
 
     }
 
-    public function save(Request $request){
+    public function save(StoreRequest $request){
 
         $foto = $request->foto;
 
+        //dd($request->all());
+        
         $this->validarCampos($request); 
-
-        dd("Só quando tratar o error de validações");
-
-
-
-
-
-
-
-
 
         $imagem = $this->fetchImage($foto);
 

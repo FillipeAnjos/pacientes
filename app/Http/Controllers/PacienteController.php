@@ -46,12 +46,12 @@ class PacienteController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id, $condicao = null){
 
         $paciente = PacienteModel::find($id);
         $residencia = DB::table('residencia')->where([['paciente_id','=',$id]])->first();
         
-        return view('pacientes/editar',  compact('paciente', 'residencia'));
+        return view('pacientes/editar',  compact('paciente', 'residencia', 'condicao'));
 
     }
 

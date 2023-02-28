@@ -140,7 +140,9 @@
                 </div>
 
                 <div class="input-group input-group-sm mb-3">
-                    <input type="submit" class="btn btn-success" value="Cadastrar"></input>
+                    @if($condicao == null)
+                        <input type="submit" class="btn btn-success" value="Cadastrar"></input>
+                    @endif
                 </div>
                 
             </form>

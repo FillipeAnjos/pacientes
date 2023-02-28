@@ -62,6 +62,8 @@
                             <span onclick="excluirPaciente('{{ $paciente->id }}')" type="button" class="btn btn-danger btn-sm">Excluir</span>
                             &nbsp;
                             <a href="edit-paciente/{{ $paciente->id }}" type="button" class="btn btn-primary btn-sm">Editar</a>
+                            &nbsp;
+                            <a href="edit-paciente/{{ $paciente->id }}/1" type="button" class="btn btn-success btn-sm">Vizualizar</a>
                         </td>
                     </tr>
                 @endforeach

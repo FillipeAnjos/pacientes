@@ -23,6 +23,8 @@ class ResidenciaController extends Controller
     }
 
     public function destroy($id){
+
+        $residencia = ResidenciaModel::where('paciente_id', $id)->delete();
     }
 
     public function edit($id){

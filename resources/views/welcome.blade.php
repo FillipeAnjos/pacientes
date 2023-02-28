@@ -42,6 +42,32 @@
                 <a href="/visualizarpacientes">Visualizar</a>
             </div>
         </div>
+
+        <br/><br/>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($pacientes as $paciente)
+                    <tr>
+                        <th scope="row">{{ $paciente->id }}</th>
+                        <td>{{ $paciente->nome }}</td>
+                        <td>
+                            <span onclick="excluirPaciente('{{ $paciente->id }}')" type="button" class="btn btn-danger btn-sm">Excluir</span>
+                            &nbsp;
+                            <a href="edit-paciente/{{ $paciente->id }}" type="button" class="btn btn-primary btn-sm">Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 
 @endsection

@@ -28,11 +28,22 @@ class PacienteController extends Controller
 
         $pacientes = PacienteModel::all();
 
-        return view('pacientes/index', compact('pacientes'));
+        //return view('pacientes/index', compact('pacientes'));
+
+        return view('welcome', compact('pacientes'));
 
     }
 
     public function destroy($id){
+
+        $residenciaController = new ResidenciaController();
+        $residenciaController->destroy($id);
+        
+        $paciente = PacienteModel::findOrFail($id);
+        $paciente->delete();
+
+        return redirect()->back();
+
     }
 
     public function edit($id){

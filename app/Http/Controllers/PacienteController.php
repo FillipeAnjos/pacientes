@@ -9,6 +9,7 @@ use App\Services\Validacao;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 use App\Models\PacienteModel;
+use App\Http\Controllers\ResidenciaController;
 
 class PacienteController extends Controller
 {
@@ -65,11 +66,27 @@ class PacienteController extends Controller
             return view('pacientes/cadastro');
         }
 
+        // Validar aqui os campos da Residenciaaaaaaaaaaaaaaa
+
+
+
+
+
+
+
         $insertPaciente = $this->savePatient($imagem, $request);
+        if(!$insertPaciente){
+            Session::flash('cadastropaciente-error', 'Ocorreu um erro ao cadastrar o paciente!');
+            return view('pacientes/cadastro');
+        }
+
+        $residenciaController = new ResidenciaController();
+        $residenciaController->save($request, $insertPaciente->id);
 
         $moverImagem = $this->moveImage($foto, $imagem);
 
-        $insertPaciente = true;
+
+
 
         if($insertPaciente){
             Session::flash('cadastropaciente-success', 'Paciente cadastrado com sucesso!');

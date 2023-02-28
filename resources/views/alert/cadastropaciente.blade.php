@@ -9,6 +9,10 @@
     $(document).ready(function () { 
         var $seuCampoCpf = $("#cpf");
         $seuCampoCpf.mask('000.000.000-00', {reverse: true});
+
+        var $seuCampoCep = $("#cep");
+        $seuCampoCep.mask('00000-000', {reverse: true});
+
     });
 </script>
 

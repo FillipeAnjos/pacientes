@@ -11,6 +11,7 @@ use App\Http\Requests\StoreRequest;
 use App\Models\PacienteModel;
 use App\Http\Controllers\ResidenciaController;
 use App\WebService\ViaCep;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -26,9 +27,7 @@ class PacienteController extends Controller
 
     public function index(){
 
-        $pacientes = PacienteModel::all();
-
-        //return view('pacientes/index', compact('pacientes'));
+        $pacientes = DB::table('pacientes')->simplePaginate(5); 
 
         return view('welcome', compact('pacientes'));
 

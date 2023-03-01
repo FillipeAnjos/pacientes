@@ -30,10 +30,16 @@ PHP / Laravel / Bootstrap / Blade / JavaScript / PostgreSQL
 
 ### Alguns Comandos Utilizados
 
-composer create-project --prefer-dist laravel/laravel c-p</br/>
-php artisan serve</br/>
-php artisan make:migration create_patients_table</br/>
-php artisan make:model ResidenciaModel</br/>
-php artisan make:controller ResidenciaController</br/>
-php artisan make:request StoreRequest</br/>
+composer create-project --prefer-dist laravel/laravel c-p
+
+php artisan serve
+
+php artisan make:migration create_patients_table
+
+php artisan make:model ResidenciaModel
+
+php artisan make:controller ResidenciaController
+
+php artisan make:request StoreRequest
+
 Além dos comandos Git

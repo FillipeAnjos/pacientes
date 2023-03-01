@@ -16,17 +16,23 @@
 
                 <div class="jumbotron">
                 <h1>Pacientes!</h1>
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+                <hr/>
+                <span><b>Obs</b>: Não foi criado o um sistema de <i>autenticação de usuários</i>, onde teoricamente eu me preocuparia 
+                    em implementar onde cada usuário poderia ou não vizualidar determinadas telas.<br/>
+                    Exemplo: A tela de cadastro com um possivel paciente teria acesso para cadastrar normalmente, 
+                    porém ele não teria a visão da grid com todos os outros pacientes, podendo editar, excluir etc.<br/>
+                    Procurei apenas realizar o máximo possivel do que foi pedido no desafio.
+                </span>
                 </div>
 
             </div>
         </div>
 
-        <br/>
+        <hr/>
 
         <div class="row">
             <div class="col">
-                <span>Faça seu <b>cadastro</b>, no link abaixo</span>
+                <span>Faça o <b>cadastro</b>, no link abaixo</span>
                 <br/>
                 <a href="/cadastropacientes">Cadastro</a>
             </div>
@@ -48,13 +54,15 @@
             </div>
         </form>
 
-        <br/>
+        <span> <span/>
 
         <table class="table table-striped">
             <thead>
                 <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">CNS</th>
                 <th scope="col">Ação</th>
                 </tr>
             </thead>
@@ -63,6 +71,8 @@
                     <tr>
                         <th scope="row">{{ $paciente->id }}</th>
                         <td>{{ $paciente->nome }}</td>
+                        <td>{{ $paciente->cpf }}</td>
+                        <td>{{ $paciente->cns }}</td>
                         <td>
                             <span onclick="excluirPaciente('{{ $paciente->id }}')" type="button" class="btn btn-danger btn-sm">Excluir</span>
                             &nbsp;

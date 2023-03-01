@@ -28,7 +28,7 @@ class PacienteController extends Controller
 
     public function index(){
 
-        $pacientes = DB::table('pacientes')->simplePaginate(5); 
+        $pacientes = DB::table('pacientes')->orderBy('id')->simplePaginate(5); 
 
         return view('welcome', compact('pacientes'));
 

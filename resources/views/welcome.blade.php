@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Cadastro de Pacientes')
+@section('title', 'Pacientes')
 
     <style>
         
@@ -15,35 +15,40 @@
             <div class="col">
 
                 <div class="jumbotron">
-                <h1>Cadastro de Pacientes!</h1>
+                <h1>Pacientes!</h1>
                 <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
                 </div>
 
             </div>
         </div>
-   
 
-        <br/><br/>
+        <br/>
 
-    
         <div class="row">
             <div class="col">
-
                 <span>Faça seu <b>cadastro</b>, no link abaixo</span>
                 <br/>
-
                 <a href="/cadastropacientes">Cadastro</a>
             </div>
             <div class="col">
-
-                <span>Visualize seus <b>pacientes</b>, no link abaixo</span>
-                <br/>
-
-                <a href="/visualizarpacientes">Visualizar</a>
             </div>
         </div>
 
         <br/><br/>
+    
+        <form method="POST" action="/search-paciente">
+            @csrf       
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" name="pesquisar" placeholder="Pesquise aqui" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="80"/>              
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Pesquisar"></input>
+                </div>
+            </div>
+        </form>
+
+        <br/>
 
         <table class="table table-striped">
             <thead>

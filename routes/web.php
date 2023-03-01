@@ -25,6 +25,7 @@ Route::get('/delete-paciente/{id}', [PacienteController::class, 'destroy']);
 Route::get('/edit-paciente/{id}', [PacienteController::class, 'edit']);
 Route::get('/edit-paciente/{id}/{condicao}', [PacienteController::class, 'edit']);
 Route::post('/update-paciente', [PacienteController::class, 'update']);
+Route::post('/search-paciente', [PacienteController::class, 'search']);
 
 
 

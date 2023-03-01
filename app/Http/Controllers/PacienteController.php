@@ -34,6 +34,17 @@ class PacienteController extends Controller
 
     }
 
+    public function search(Request $request){
+
+        if(empty($request->pesquisar)){
+            return redirect('/');
+        }else{
+            $pacientes = DB::table('pacientes')->where('nome', 'ilike', $request->pesquisar.'%')->simplePaginate(5);
+            return view('welcome', compact('pacientes'));
+        }
+
+    }
+
     public function destroy($id){
 
         $residenciaController = new ResidenciaController();

@@ -40,6 +40,10 @@ php artisan make:model ResidenciaModel
 
 php artisan make:controller ResidenciaController
 
+php artisan make:factory AdmModel
+
+php artisan migrate --seed
+
 php artisan make:request StoreRequest
 
 Além dos comandos Git
